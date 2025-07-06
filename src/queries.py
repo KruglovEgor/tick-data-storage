@@ -26,11 +26,6 @@ ACTIVE_ORDERS_TABLE = '''
     )
 '''
 
-IDX_HISTORY_TIMESTAMP = 'CREATE INDEX IF NOT EXISTS idx_history_timestamp ON order_history(timestamp)'
-IDX_HISTORY_ORDER_ID_HASH = 'CREATE INDEX IF NOT EXISTS idx_history_order_id_hash ON order_history USING HASH (order_id)'
-IDX_ACTIVE_SYMBOL_OPERATION = 'CREATE INDEX IF NOT EXISTS idx_active_symbol_operation ON active_orders(symbol, operation)'
-IDX_ACTIVE_SYMBOL_TIMESTAMP = 'CREATE INDEX IF NOT EXISTS idx_active_symbol_timestamp ON active_orders(symbol, timestamp)'
-
 INSERT_HISTORY_BATCH = '''
     INSERT INTO order_history (symbol, operation, timestamp, order_id, action_type, price, volume)
     VALUES %s
@@ -121,11 +116,6 @@ ACTIVE_ORDERS_TABLE_SQLITE = '''
     )
 '''
 
-IDX_HISTORY_TIMESTAMP_SQLITE = 'CREATE INDEX IF NOT EXISTS idx_history_timestamp ON order_history(timestamp)'
-IDX_HISTORY_ORDER_ID_SQLITE = 'CREATE INDEX IF NOT EXISTS idx_history_order_id ON order_history(order_id)'
-IDX_ACTIVE_SYMBOL_OPERATION_SQLITE = 'CREATE INDEX IF NOT EXISTS idx_active_symbol_operation ON active_orders(symbol, operation)'
-IDX_ACTIVE_SYMBOL_TIMESTAMP_SQLITE = 'CREATE INDEX IF NOT EXISTS idx_active_symbol_timestamp ON active_orders(symbol, timestamp)'
-
 INSERT_HISTORY_BATCH_SQLITE = '''
     INSERT INTO order_history (symbol, operation, timestamp, order_id, action_type, price, volume)
     VALUES (?, ?, ?, ?, ?, ?, ?)
@@ -185,4 +175,6 @@ BEST_PRICES_QUERY_SQLITE_SELL = '''
 
 GET_ACTIVE_ORDERS_COUNT = """
 SELECT COUNT(*) FROM active_orders
-""" 
+"""
+
+IDX_HISTORY_ORDER_ID_SQLITE = 'CREATE INDEX IF NOT EXISTS idx_history_order_id ON order_history(order_id)' 

@@ -30,7 +30,6 @@ SiH1,S,20210201100537761,105,1,79500,100"""
     
     db = SQLiteDB()
     db.create_tables()
-    db.create_indexes()
     
     processor = TickDataProcessor(db)
     processor.process_csv_file("test_data.csv")
@@ -65,7 +64,6 @@ def process_real_data():
     
     db = SQLiteDB()
     db.create_tables()
-    db.create_indexes()
     
     processor = TickDataProcessor(db)
     processor.process_csv_file(csv_file, limit=50000)

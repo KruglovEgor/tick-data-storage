@@ -31,18 +31,6 @@ class PostgresDB(DBInterface):
         finally:
             self.return_connection(conn)
 
-    def create_indexes(self):
-        conn = self.get_connection()
-        try:
-            with conn.cursor() as cursor:
-                cursor.execute(IDX_HISTORY_TIMESTAMP)
-                cursor.execute(IDX_HISTORY_ORDER_ID_HASH)
-                cursor.execute(IDX_ACTIVE_SYMBOL_OPERATION)
-                cursor.execute(IDX_ACTIVE_SYMBOL_TIMESTAMP)
-                conn.commit()
-        finally:
-            self.return_connection(conn)
-
     def clear_tables(self):
         conn = self.get_connection()
         try:
@@ -149,4 +137,7 @@ class PostgresDB(DBInterface):
             self.return_connection(conn)
 
     def close(self):
-        self.pool.closeall() 
+        self.pool.closeall()
+
+    def create_indexes(self):
+        pass 

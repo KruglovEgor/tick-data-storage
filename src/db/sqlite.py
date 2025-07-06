@@ -23,10 +23,7 @@ class SQLiteDB(DBInterface):
     def create_indexes(self):
         conn = self.get_connection()
         cursor = conn.cursor()
-        cursor.execute(IDX_HISTORY_TIMESTAMP_SQLITE)
         cursor.execute(IDX_HISTORY_ORDER_ID_SQLITE)
-        cursor.execute(IDX_ACTIVE_SYMBOL_OPERATION_SQLITE)
-        cursor.execute(IDX_ACTIVE_SYMBOL_TIMESTAMP_SQLITE)
         conn.commit()
 
     def clear_tables(self):
